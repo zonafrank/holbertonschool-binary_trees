@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 
 /**
- * pow - calculates the exponent of a given base number
+ * _pow - calculates the exponent of a given base number
  * @base: the base number
  * @exponent: the exponent
  * Return: result of raising the base to the exponent
