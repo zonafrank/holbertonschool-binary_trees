@@ -6,7 +6,7 @@
  * @exponent: the exponent
  * Return: result of raising the base to the exponent
  */
-double pow(double base, int exponent)
+double _pow(double base, int exponent)
 {
 	double result;
 	int i;
@@ -75,7 +75,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	height = binary_tree_height(tree);
 	size = binary_tree_size(tree);
-	expected_size = pow(2, height) - 1;
+	expected_size = _pow(2, height) - 1;
 
 	return (size == expected_size);
 }
