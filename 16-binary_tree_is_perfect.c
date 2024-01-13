@@ -1,6 +1,31 @@
 #include "binary_trees.h"
 
 /**
+ * pow - calculates the exponent of a given base number
+ * @base: the base number
+ * @exponent: the exponent
+ * Return: result of raising the base to the exponent
+ */
+double pow(double base, int exponent)
+{
+	double result;
+
+	if (exponent <= 0)
+	{
+		return (1);
+	}
+	else
+	{
+		result = 1;
+		for (int i = 0; i < exponent; i++)
+		{
+			result *= base;
+		}
+		return (result);
+	}
+}
+
+/**
  * binary_tree_height - measures the height of a binary tree
  * @tree: pointer to the root node of the tree to measure the height
  * Return: height of tree or zero if tree is NULL
@@ -23,27 +48,16 @@ size_t binary_tree_height(const binary_tree_t *tree)
 }
 
 /**
- * binary_tree_is_full - checks if a binary tree is full
- * @tree: pointer to the root node of the tree to check
- * Return: 1 if tree is full else 0
+ * binary_tree_size -  measures the size of a binary tree
+ * @tree: pointer to the root node of the tree to measure the size
+ * Return: depth of tree or 0 if tree is NULL
  */
-int binary_tree_is_full(const binary_tree_t *tree)
+size_t binary_tree_size(const binary_tree_t *tree)
 {
-	int left_is_full, right_is_full;
-
 	if (tree == NULL)
 		return (0);
 
-	if ((tree->left == NULL && tree->right != NULL) ||
-		(tree->left != NULL && tree->right == NULL))
-		return (0);
-
-	if (tree->left == NULL && tree->right == NULL)
-		return (1);
-
-	left_is_full = binary_tree_is_full(tree->left);
-	right_is_full = binary_tree_is_full(tree->right);
-	return (left_is_full && right_is_full);
+	return (binary_tree_size(tree->left) + 1 + binary_tree_size(tree->right));
 }
 
 /**
@@ -53,13 +67,14 @@ int binary_tree_is_full(const binary_tree_t *tree)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t left_height, right_height;
+	size_t height, size, expected_size;
 
 	if (tree == NULL)
 		return (0);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
+	height = binary_tree_height(tree);
+	size = binary_tree_size(tree);
+	expected_size = pow(2, height) - 1;
 
-	return (left_height == right_height && binary_tree_is_full(tree));
+	return (size == expected_size);
 }
