@@ -9,6 +9,7 @@
 double pow(double base, int exponent)
 {
 	double result;
+	int i;
 
 	if (exponent <= 0)
 	{
@@ -17,7 +18,7 @@ double pow(double base, int exponent)
 	else
 	{
 		result = 1;
-		for (int i = 0; i < exponent; i++)
+		for (i = 0; i < exponent; i++)
 		{
 			result *= base;
 		}
